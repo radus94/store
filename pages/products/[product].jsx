@@ -18,7 +18,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import { flexbox } from '@material-ui/system'
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import SlideShow from '../../components/SlideShow'
+import SlideShow from '../../components/SlideShow';
+import { FormattedMessage } from 'react-intl';
 
 
 
@@ -66,13 +67,12 @@ const useStyles = makeStyles((theme) => ({
 
 const ProductPage = (props) => {
     const classes = useStyles();
-    const [{products}, dispatch] = useGlobal();
-    const [qty, setQty] = useState(1)
+    const [{products, cart}, dispatch] = useGlobal();
     const product = products.find(item => item.id === props.router.query.product)
-
-    console.log(product)
-
     const [value, setValue] = React.useState(0);
+    const productQty = product.qty;
+    const [qty, setQty] = useState(productQty);
+    const existBagProduct = cart.some(e => e.id === product.id);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -143,14 +143,15 @@ const ProductPage = (props) => {
                                 <Box display="flex" >
                                     <Box
                                         className={classes.qty}
-                                        onClick={() => setQty(qty - 1)}
+                                        onClick={(evt) => setQty(qty - 1)}
                                     >
                                         -
                                     </Box>
                                     <Box className={classes.qty}>{qty}</Box>
                                     <Box
                                         className={classes.qty}
-                                        onClick={() => setQty(qty + 1)}>
+                                        onClick={(evt) => setQty(qty + 1)}
+                                        >
                                         +
                                     </Box>
                                 </Box>
@@ -171,13 +172,14 @@ const ProductPage = (props) => {
                                     color="primary"
                                     fullWidth
                                 >
-                                    Buy Now
+                                    <FormattedMessage id='btn.buy.now' />
                                 </Button>
                             </Grid>
                             <Grid item lg={5} md={5} sm={4} xs={12}>
                                 <Button
                                     variant="outlined"
                                     fullWidth
+                                    style = {!existBagProduct ? {} : {display:"none"}}
                                     onClick={ (evt) => {
                                         if (evt) {
                                             evt.preventDefault();
@@ -186,12 +188,32 @@ const ProductPage = (props) => {
                                             type: 'ADD_TO_BAG',
                                             payload: {
                                                 id: product.id,
-                                                qty: 1
+                                                qty: qty
                                             }
                                         });
                                     }}
                                 >
-                                    <ShoppingCartIcon fontSize="small"/> Add to Bag
+                                    <ShoppingCartIcon fontSize="small"/> 
+                                    <FormattedMessage id='btn.add.bag' />
+                                </Button>
+                                <Button
+                                    variant="outlined"
+                                    fullWidth
+                                    style = {!existBagProduct ? {display:"none"} : {}}
+                                    onClick={ (evt) => {
+                                        if (evt) {
+                                            evt.preventDefault();
+                                        }
+                                        dispatch({
+                                            type: 'REMOVE_FROM_BAG',
+                                            payload: {
+                                                id: product.id,
+                                                qty: qty
+                                            }
+                                        });
+                                    }}
+                                >
+                                    <FormattedMessage id='btn.remove.bag' />
                                 </Button>
                             </Grid>
                         </Grid>

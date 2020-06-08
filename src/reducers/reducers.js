@@ -16,7 +16,7 @@ export function globalReducer(state, action) {
                     qty: payload.qty
                 });
             }
-
+            console.log("Count", updatedCart)
             return {
                 ...state,
                 cart: updatedCart
@@ -51,22 +51,6 @@ export function globalReducer(state, action) {
 
         case 'REMOVE_FROM_WISH': {
             const updatedWish = state.wishlist.filter(wishItem => wishItem.id !== payload.id);
-
-            return {
-                ...state,
-                wishlist: updatedWish
-            }
-        }
-
-        case 'QTY_PLUS': {
-            const addedQty = state.products.find(product => product.id === payload.id);
-            let updatedWish = [...state.wishlist];
-            if(!updatedWish.some(e => e.id === payload.id)) {
-                updatedWish.push({
-                    ...addedQty,
-                    qty: payload.qty
-                });
-            }
 
             return {
                 ...state,

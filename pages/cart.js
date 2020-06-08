@@ -3,6 +3,7 @@ import { Grid, Container } from '@material-ui/core';
 import {useGlobal} from '../src/context/GlobalContext'
 import CartItem from '../components/cartItem'
 import {makeStyles} from "@material-ui/core/styles";
+import { FormattedMessage } from 'react-intl';
 
 const useStyles = makeStyles({
     containerBox: {
@@ -16,10 +17,10 @@ export default () => {
 
     return (
         <Container maxWidth="lg" className={classes.containerBox}>
-            <h1>Cart</h1>
+            <h1><FormattedMessage id='cart.title' /></h1>
             <Grid container spacing={2}>
                 {!state.cart.length &&
-                <h2>Your cart is empty</h2>
+                <h2><FormattedMessage id='empty.cart' /></h2>
                 }
 
                 {state.cart.map((product, index)=> <CartItem key={index} product={product} />)}

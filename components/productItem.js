@@ -14,6 +14,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {useGlobal} from '../src/context/GlobalContext';
 import wishlist from "../pages/wishlist";
 import Link from '../src/Link'
+import { FormattedMessage } from 'react-intl';
 
 
 const useStyles = makeStyles({
@@ -35,8 +36,9 @@ const useStyles = makeStyles({
 
 export default function ProductItem({product}) {
     const classes = useStyles();
-    const [ state, dispatch ] = useGlobal();
-
+    const [ {state,cart, wishlist}, dispatch ] = useGlobal();
+    const existBagProduct = cart.some(e => e.id === product.id)
+    const existWishProduct = wishlist.some(e => e.id === product.id)
     return (
         <Grid item xs={12} md={6} lg={4}>
             <Card >
@@ -63,6 +65,7 @@ export default function ProductItem({product}) {
                 <CardActions>
                     <Button
                         className={classes.cartBotton}
+                        style = {!existBagProduct ? {} : {display:"none"}}
                         variant="contained"
                         color="primary"
                         onClick={ (evt) => {
@@ -79,10 +82,32 @@ export default function ProductItem({product}) {
                             });
                         }}
                     >
-                        Add to bag
+                        <FormattedMessage id='btn.add.bag' />
                     </Button>
                     <Button
                         className={classes.cartBotton}
+                        style = {!existBagProduct ? {display:"none"} : {}}
+                        variant="contained"
+                        color="primary"
+                        onClick={ (evt) => {
+                            if (evt) {
+                                evt.preventDefault();
+                            }
+
+                            dispatch({
+                                type: 'REMOVE_FROM_BAG',
+                                payload: {
+                                    id: product.id,
+                                    qty: 1
+                                }
+                            });
+                        }}
+                    >
+                        <FormattedMessage id='btn.remove.bag' />
+                    </Button>
+                    <Button
+                        className={classes.cartBotton}
+                        style = {!existWishProduct ? {} : {display:"none"}}
                         variant="contained"
                         color="primary"
                         onClick={ (evt) => {
@@ -98,7 +123,27 @@ export default function ProductItem({product}) {
                             });
                         }}
                     >
-                        Add to Favorites
+                        <FormattedMessage id='btn.add.wish' />
+                    </Button>
+                    <Button
+                        className={classes.cartBotton}
+                        style = {!existWishProduct ? {display:"none"} : {}}
+                        variant="contained"
+                        color="primary"
+                        onClick={ (evt) => {
+                            if (evt) {
+                                evt.preventDefault();
+                            }
+                            dispatch({
+                                type: 'REMOVE_FROM_WISH',
+                                payload: {
+                                    id: product.id,
+                                    qty: 1
+                                }
+                            });
+                        }}
+                    >
+                        <FormattedMessage id='btn.remove.wish' />
                     </Button>
                 </CardActions>
             </Card>

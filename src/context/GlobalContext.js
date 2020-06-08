@@ -34,6 +34,7 @@ export const initialState = {
                 }
             ],
             parameter: ["E 30", "Black", "USA, Europe"],
+            qty: 1
         },
         {
             id: '2',
