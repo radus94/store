@@ -1,5 +1,5 @@
-import React from "react";
-import { Grid, Container } from '@material-ui/core';
+import React, {useState} from "react";
+import {Grid, Container, Button} from '@material-ui/core';
 import {useGlobal} from '../../src/context/GlobalContext'
 import ProductItem from '../../components/productItem'
 import PropTypes from 'prop-types';
@@ -9,6 +9,18 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TabPanel from '../../components/TabPanel'
+import {withRouter} from "next/router";
+import CardMedia from "@material-ui/core/CardMedia";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import StarIcon from '@material-ui/icons/Star';
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@material-ui/core/Radio";
+import { flexbox } from '@material-ui/system'
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import SlideShow from '../../components/SlideShow'
+
+
 
 function a11yProps(index) {
     return {
@@ -23,11 +35,43 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         backgroundColor: theme.palette.background.paper,
     },
+    ratingsList: {
+        display: "flex",
+        paddingLeft: "0"
+    },
+    ratingsItem: {
+        listStyle: "none"
+    },
+    media: {
+        height: "60vh",
+    },
+    paramTitle: {
+      fontWeight: "bold"
+    },
+    qty: {
+        width: "100%",
+        textAlign: "center",
+        padding: "4px 0",
+        border: "1px solid black",
+        borderRadius: "2px"
+    },
+    cartBotton: {
+        background: "black",
+    },
+    parameter: {
+        marginTop: "10px"
+    }
+
 }));
 
-export default () => {
+const ProductPage = (props) => {
     const classes = useStyles();
-    // const [state, dispatch] = useGlobal();
+    const [{products}, dispatch] = useGlobal();
+    const [qty, setQty] = useState(1)
+    const product = products.find(item => item.id === props.router.query.product)
+
+    console.log(product)
+
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -35,14 +79,124 @@ export default () => {
     };
 
     return (
+        product ?
         <Container maxWidth="lg" className={classes.containerBox}>
             <h1>Product page</h1>
             <Grid container spacing={2}>
                 <Grid xs={12} md={6} item>
-                    Image
+                    <SlideShow slides={product.slideImg} thumbnails={product.slideImg}/>
                 </Grid>
                 <Grid xs={12} md={6} item>
-                    Data
+                    <h2>{product.name}</h2>
+                    <p>Auto</p>
+                    <ul className={classes.ratingsList}>
+                        <li className={classes.ratingsItem}>
+                            <StarIcon/>
+                        </li>
+                        <li className={classes.ratingsItem}>
+                            <StarIcon/>
+                        </li>
+                        <li className={classes.ratingsItem}>
+                            <StarIcon/>
+                        </li>
+                        <li className={classes.ratingsItem}>
+                            <StarIcon/>
+                        </li>
+                        <li className={classes.ratingsItem}>
+                            <StarIcon/>
+                        </li>
+                    </ul>
+                    <p><span><strong>{product.price} $</strong></span></p>
+                    <p>{product.description}</p>
+                    <div >
+                        <Grid container spacing={1}>
+                            <Grid className={classes.paramTitle} item lg={3} md={4} sm={4} xs={6}>
+                                Model
+                            </Grid>
+                            <Grid item lg={9} md={8} sm={8} xs={6}>
+                                {product.parameter[0]}
+                            </Grid>
+                            <Grid className={classes.paramTitle} item lg={3} md={4} sm={4} xs={6}>
+                                Color
+                            </Grid>
+                            <Grid item lg={9} md={8} sm={8} xs={6}>
+                                {product.parameter[1]}
+                            </Grid>
+                            <Grid className={classes.paramTitle} item lg={3} md={4} sm={4} xs={6}>
+                                Delivery
+                            </Grid>
+                            <Grid item lg={9} md={8} sm={8} xs={6}>
+                                {product.parameter[2]}
+                            </Grid>
+                        </Grid>
+                        <hr className={classes.marginTop} />
+                        <Grid container spacing={1}>
+                            <Grid item lg={3} md={4} sm={4} xs={6}>
+                                Quantity
+                            </Grid>
+                            <Grid item lg={3} md={4} sm={4} xs={6}>
+                                Size
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={1} alignItems="center">
+                            <Grid item lg={3} md={4} sm={4} xs={6}>
+                                <Box display="flex" >
+                                    <Box
+                                        className={classes.qty}
+                                        onClick={() => setQty(qty - 1)}
+                                    >
+                                        -
+                                    </Box>
+                                    <Box className={classes.qty}>{qty}</Box>
+                                    <Box
+                                        className={classes.qty}
+                                        onClick={() => setQty(qty + 1)}>
+                                        +
+                                    </Box>
+                                </Box>
+                            </Grid>
+                            <Grid item lg={9} md={8} sm={8} xs={6}>
+                                <RadioGroup row>
+                                    <FormControlLabel value="small" control={<Radio color="primary" size="small"/>} label="Small" />
+                                    <FormControlLabel value="medium" control={<Radio color="primary" size="small"/>} label="Medium" />
+                                    <FormControlLabel value="large" control={<Radio color="primary" size="small"/>} label="Large" />
+                                </RadioGroup>
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={1} alignContent="center">
+                            <Grid item lg={3} md={4} sm={3} xs={12}>
+                                <Button
+                                    className={classes.cartBotton}
+                                    variant="contained"
+                                    color="primary"
+                                    fullWidth
+                                >
+                                    Buy Now
+                                </Button>
+                            </Grid>
+                            <Grid item lg={5} md={5} sm={4} xs={12}>
+                                <Button
+                                    variant="outlined"
+                                    fullWidth
+                                    onClick={ (evt) => {
+                                        if (evt) {
+                                            evt.preventDefault();
+                                        }
+                                        dispatch({
+                                            type: 'ADD_TO_BAG',
+                                            payload: {
+                                                id: product.id,
+                                                qty: 1
+                                            }
+                                        });
+                                    }}
+                                >
+                                    <ShoppingCartIcon fontSize="small"/> Add to Bag
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </div>
+
                 </Grid>
                 <Grid item xs={12}>
                     Tabs
@@ -51,7 +205,6 @@ export default () => {
                         onChange={handleChange}
                         indicatorColor="primary"
                         textColor="primary"
-                        // variant="scrollable"
                         scrollButtons="auto"
                         aria-label="scrollable auto tabs example"
                         variant="fullWidth"
@@ -70,5 +223,8 @@ export default () => {
                 </Grid>
             </Grid>
         </Container>
+        : <CircularProgress />
     );
 };
+
+export default withRouter(ProductPage)

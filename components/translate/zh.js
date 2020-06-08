@@ -1,4 +1,4 @@
-export const en = {
-    'product.menu.label': 'Products',
-    'home.page.title': 'Home page lala',
-}
+export const zh = {
+    'product.menu.label': '产品展示',
+    'home.page.title': '主页',
+};

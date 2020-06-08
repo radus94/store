@@ -15,9 +15,12 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import Link from '@material-ui/core/Link'
+import Link from '../src/Link'
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
+import {useGlobal} from '../src/context/GlobalContext';
+import Select from "@material-ui/core/Select";
+import { FormattedMessage } from 'react-intl';
+import LanguageIcon from '@material-ui/icons/Language';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -88,14 +91,21 @@ const useStyles = makeStyles((theme) => ({
     },
     cartIcon: {
         color: 'white'
+    },
+    langSelect: {
+        backgroundColor: "white",
+        // margin: "0 auto"
     }
 
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar({handleChangeLocale, locale}) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [state] = useGlobal();
+    const cartCounter = state.cart.length;
+    const wishCounter = state.wishlist.length;
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -171,21 +181,38 @@ export default function PrimarySearchAppBar() {
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
-            <MenuItem>
-                <IconButton aria-label="show 11 new notifications" color="inherit">
-                    <Badge badgeContent={2} color="error">
+            <MenuItem href="/cart">
+                <IconButton aria-label={`show ${cartCounter} product`} color="inherit">
+                    <Badge badgeContent={cartCounter} color="error">
                         <ShoppingCartIcon />
                     </Badge>
                 </IconButton>
                 <p>Cart</p>
             </MenuItem>
-            <MenuItem>
+            <MenuItem href="/wishlist">
                 <IconButton aria-label="show 11 new notifications" color="inherit">
                     <Badge badgeContent={1} color="error">
                         <FavoriteIcon />
                     </Badge>
                 </IconButton>
-                <p>Favorit</p>
+                <p>Wishlist</p>
+            </MenuItem>
+            <MenuItem>
+                <IconButton color="inherit">
+                    <LanguageIcon />
+                </IconButton>
+                <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    value={locale}
+                    onChange={handleChangeLocale}
+                    className={classes.langSelect}
+                >
+                    <MenuItem value={'ro'}>Romanian</MenuItem>
+                    <MenuItem value={'ru'}>Russian</MenuItem>
+                    <MenuItem value={'en'}>English</MenuItem>
+                    <MenuItem value={"zh"}>中文</MenuItem>
+                </Select>
             </MenuItem>
         </Menu>
     );
@@ -207,7 +234,7 @@ export default function PrimarySearchAppBar() {
                     </Typography>
                     <Link href="/products" >
                         <Typography className={classes.title} variant="h6" noWrap>
-                            Products
+                            <FormattedMessage id='product.menu.label' />
                         </Typography>
                     </Link>
                     <div className={classes.search}>
@@ -246,19 +273,31 @@ export default function PrimarySearchAppBar() {
                             <AccountCircle />
                         </IconButton>
                         <Link href="/cart" className={classes.cartIcon}>
-                            <IconButton aria-label="show 2 product" color="inherit">
-                                <Badge badgeContent={2} color="error">
+                            <IconButton aria-label={`show ${cartCounter} product`} color="inherit">
+                                <Badge badgeContent={cartCounter} color="error">
                                     <ShoppingCartIcon />
                                 </Badge>
                             </IconButton>
                         </Link>
-                        <Link href="/favorits" className={classes.cartIcon}>
-                            <IconButton aria-label="show 2 favorit" color="inherit">
-                                <Badge badgeContent={1} color="error">
+                        <Link href="/wishlist" className={classes.cartIcon}>
+                            <IconButton aria-label={`show ${wishCounter} product`} color="inherit">
+                                <Badge badgeContent={wishCounter} color="error">
                                     <FavoriteIcon />
                                 </Badge>
                             </IconButton>
                         </Link>
+                        <Select
+                            labelId="demo-simple-select-helper-label"
+                            id="demo-simple-select-helper"
+                            value={locale}
+                            onChange={handleChangeLocale}
+                            className={classes.cartIcon}
+                        >
+                            <MenuItem value={'ro'}>Romanian</MenuItem>
+                            <MenuItem value={'ru'}>Russian</MenuItem>
+                            <MenuItem value={'en'}>English</MenuItem>
+                            <MenuItem value="zh">中文</MenuItem>
+                        </Select>
                     </div>
                     <div className={classes.sectionMobile}>
                         <IconButton

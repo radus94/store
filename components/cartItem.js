@@ -11,7 +11,6 @@ import {
     Button,
 } from '@material-ui/core';
 import {useGlobal} from '../src/context/GlobalContext';
-import Container from "@material-ui/core/Container";
 
 
 const useStyles = makeStyles({
@@ -33,7 +32,7 @@ const useStyles = makeStyles({
 
 export default function ProductItem({product}) {
     const classes = useStyles();
-    // const [ state, dispatch ] = useGlobal();
+    const [ state, dispatch ] = useGlobal();
 
     return (
         <Grid item xs={12} md={6} lg={4}>
@@ -57,11 +56,53 @@ export default function ProductItem({product}) {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button className={classes.cartBotton} variant="contained" color="primary">
-                        Add to bag
+                    <Button
+                        className={classes.cartBotton}
+                        variant="contained"
+                        color="primary"
+                        onClick={ (evt) => {
+                            if (evt) {
+                                evt.preventDefault();
+                                console.log("Add Fav")
+                            }
+
+                            dispatch({
+                                type: 'ADD_TO_WISH',
+                                payload: {
+                                    id: product.id,
+                                    qty: 1
+                                }
+                            });
+
+                            dispatch({
+                                type: 'REMOVE_FROM_BAG',
+                                payload: {
+                                    id: product.id,
+                                }
+                            });
+
+                        }}
+                    >
+                        Move to Wishlist
                     </Button>
-                    <Button className={classes.cartBotton} variant="contained" color="primary">
-                        Add to Favorites
+                    <Button
+                        className={classes.cartBotton}
+                        variant="contained"
+                        color="primary"
+                        onClick={ (evt) => {
+                            if (evt) {
+                                evt.preventDefault();
+                            }
+
+                            dispatch({
+                                type: 'REMOVE_FROM_BAG',
+                                payload: {
+                                    id: product.id,
+                                }
+                            });
+                        }}
+                    >
+                        Remove from bag
                     </Button>
                 </CardActions>
             </Card>

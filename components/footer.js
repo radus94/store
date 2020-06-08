@@ -10,9 +10,13 @@ import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
     footer: {
+        left: 0,
+        bottom: 0,
+        width: "100%",
         background: "black",
         color: "white",
-        padding: "15px 0 10px 0"
+        marginTop: "15px",
+        padding: "15px 0 10px 0",
     },
     socialIcon: {
         padding: "0 10px",
@@ -25,8 +29,10 @@ const useStyles = makeStyles({
         background: "#a6a7a5",
         height: 1,
         width: "30%",
+        margin: "0 auto"
     },
     copyRight: {
+        marginTop: "3px",
         display: "block",
         color: "#a6a7a5",
         margin: "0 auto",
@@ -43,16 +49,16 @@ export default () => {
         <div className={classes.footer}>
             <Container maxWidth="lg" className={classes.containerBox}>
                 <Box display="flex" justifyContent="center">
-                    <Link href="#" className={classes.socialIcon}>
+                    <Link to="#" className={classes.socialIcon}>
                         <InstagramIcon />
                     </Link>
-                    <Link href="#" className={classes.socialIcon}>
+                    <Link to="#" className={classes.socialIcon}>
                         <FacebookIcon />
                     </Link>
-                    <Link href="#" className={classes.socialIcon}>
+                    <Link to="#" className={classes.socialIcon}>
                         <TwitterIcon />
                     </Link>
-                    <Link href="#" className={classes.socialIcon}>
+                    <Link to="#" className={classes.socialIcon}>
                         <LinkedInIcon />
                     </Link>
                 </Box>
