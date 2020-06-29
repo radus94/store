@@ -1,32 +1,71 @@
 {
-  "devFiles": [
-    "static/runtime/react-refresh.js",
-    "static/development/dll/dll_fe850393d08f72bfe67b.js",
-    "static/development/dll/dll_fe850393d08f72bfe67b.js.map"
-  ],
+  "devFiles": [],
   "lowPriorityFiles": [
-    "static/development/_buildManifest.js",
-    "static/development/_ssgManifest.js"
+    "static/s1935aXmu6BsrqHPsISPD/_buildManifest.js",
+    "static/s1935aXmu6BsrqHPsISPD/_ssgManifest.js"
   ],
   "pages": {
+    "/": [
+      "static/runtime/webpack-c212667a5f965e81e004.js",
+      "static/chunks/framework.c8d289f8b96717e32d7a.js",
+      "static/chunks/8ceb04a32707265a498e3a3836ac7dd982ec7c54.601a4f1415f741edcc32.js",
+      "static/runtime/main-a1a0ea67ba4c37c2173b.js"
+    ],
     "/_app": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
+      "static/runtime/webpack-c212667a5f965e81e004.js",
+      "static/chunks/framework.c8d289f8b96717e32d7a.js",
+      "static/chunks/8ceb04a32707265a498e3a3836ac7dd982ec7c54.601a4f1415f741edcc32.js",
+      "static/chunks/2b457fa635bc89b8f5dead62a60d66e9e1ba1775.e65602e6e2dcfd7bbf44.js",
+      "static/chunks/f17d8477645260456d717196cb127d5870751d13.dc1647a008f117a515ff.js",
+      "static/chunks/9fe36e773b9e894f30f5b9d5ab475306fbc85cd3.f0ac3935ac730bd9445f.js",
+      "static/runtime/main-a1a0ea67ba4c37c2173b.js"
     ],
     "/_error": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
+      "static/runtime/webpack-c212667a5f965e81e004.js",
+      "static/chunks/framework.c8d289f8b96717e32d7a.js",
+      "static/runtime/main-a1a0ea67ba4c37c2173b.js"
     ],
     "/_polyfills": [
-      "static/runtime/polyfills.js"
+      "static/runtime/polyfills-db3eeaf8fbc6db3a50d4.js"
     ],
     "/cart": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
+      "static/runtime/webpack-c212667a5f965e81e004.js",
+      "static/chunks/framework.c8d289f8b96717e32d7a.js",
+      "static/chunks/8ceb04a32707265a498e3a3836ac7dd982ec7c54.601a4f1415f741edcc32.js",
+      "static/chunks/2b457fa635bc89b8f5dead62a60d66e9e1ba1775.e65602e6e2dcfd7bbf44.js",
+      "static/chunks/f17d8477645260456d717196cb127d5870751d13.dc1647a008f117a515ff.js",
+      "static/runtime/main-a1a0ea67ba4c37c2173b.js"
+    ],
+    "/index": [
+      "static/runtime/webpack-c212667a5f965e81e004.js",
+      "static/chunks/framework.c8d289f8b96717e32d7a.js",
+      "static/chunks/8ceb04a32707265a498e3a3836ac7dd982ec7c54.601a4f1415f741edcc32.js",
+      "static/runtime/main-a1a0ea67ba4c37c2173b.js"
+    ],
+    "/products": [
+      "static/runtime/webpack-c212667a5f965e81e004.js",
+      "static/chunks/framework.c8d289f8b96717e32d7a.js",
+      "static/chunks/8ceb04a32707265a498e3a3836ac7dd982ec7c54.601a4f1415f741edcc32.js",
+      "static/chunks/2b457fa635bc89b8f5dead62a60d66e9e1ba1775.e65602e6e2dcfd7bbf44.js",
+      "static/chunks/f17d8477645260456d717196cb127d5870751d13.dc1647a008f117a515ff.js",
+      "static/runtime/main-a1a0ea67ba4c37c2173b.js"
+    ],
+    "/products/[product]": [
+      "static/runtime/webpack-c212667a5f965e81e004.js",
+      "static/chunks/framework.c8d289f8b96717e32d7a.js",
+      "static/chunks/8ceb04a32707265a498e3a3836ac7dd982ec7c54.601a4f1415f741edcc32.js",
+      "static/chunks/2b457fa635bc89b8f5dead62a60d66e9e1ba1775.e65602e6e2dcfd7bbf44.js",
+      "static/chunks/f17d8477645260456d717196cb127d5870751d13.dc1647a008f117a515ff.js",
+      "static/chunks/9fe36e773b9e894f30f5b9d5ab475306fbc85cd3.f0ac3935ac730bd9445f.js",
+      "static/runtime/main-a1a0ea67ba4c37c2173b.js"
     ],
     "/wishlist": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
+      "static/runtime/webpack-c212667a5f965e81e004.js",
+      "static/chunks/framework.c8d289f8b96717e32d7a.js",
+      "static/chunks/8ceb04a32707265a498e3a3836ac7dd982ec7c54.601a4f1415f741edcc32.js",
+      "static/chunks/2b457fa635bc89b8f5dead62a60d66e9e1ba1775.e65602e6e2dcfd7bbf44.js",
+      "static/chunks/f17d8477645260456d717196cb127d5870751d13.dc1647a008f117a515ff.js",
+      "static/runtime/main-a1a0ea67ba4c37c2173b.js"
     ]
   }
 }

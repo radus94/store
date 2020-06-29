@@ -69,11 +69,12 @@ const ProductPage = (props) => {
     const classes = useStyles();
     const [{products, cart}, dispatch] = useGlobal();
     const product = products.find(item => item.id === props.router.query.product)
+    console.log(product)
+    // console.log(product.id)
     const [value, setValue] = React.useState(0);
-    const productQty = product.qty;
-    const [qty, setQty] = useState(productQty);
+    const [qty, setQty] = useState(1);
     const existBagProduct = cart.some(e => e.id === product.id);
-
+    // const productQty = product.qty;
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };

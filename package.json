@@ -12,11 +12,23 @@
     "react-intl": "^4.6.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "@testing-library/react": "^10.2.1",
+    "babel-loader": "^8.1.0",
+    "jest": "^26.0.1",
     "prop-types": "^15.7.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "next"
+    "test": "jest",
+    "test-watch": "jest --watchAll",
+    "start": "next",
+    "build": "next build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "keywords": [],
   "author": "",

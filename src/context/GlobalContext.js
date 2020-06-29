@@ -43,6 +43,7 @@ export const initialState = {
             price: '1400',
             img: 'https://picserio.com/data/out/62/bmw-e30-wallpaper_2845122.jpg',
             parameter: ["E 30", "Black", "Russia, Europe"],
+            qty: 1
         },
         {
             id: '3',
@@ -51,6 +52,7 @@ export const initialState = {
             price: '1600',
             img: 'https://wallup.net/wp-content/uploads/2016/01/208236-car-vehicle-BMW-BMW_E30-748x468.jpg',
             parameter: ["E 30", "Black", "USA, Europe"],
+            qty: 1
         },
         {
             id: '4',
@@ -59,6 +61,7 @@ export const initialState = {
             price: '1700',
             img: 'http://wallpapers.net/web/wallpapers/bmw-e30-hd-wallpaper/thumbnail/lg.jpg',
             parameter: ["E 30", "Black", "Europe"],
+            qty: 1
         },
         {
             id: '5',
@@ -66,7 +69,8 @@ export const initialState = {
             description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
             price: '1500',
             img: 'http://sf.co.ua/14/04/wallpaper-1927547.jpg',
-            parameter: ["E 30", "Black", "Russia"]
+            parameter: ["E 30", "Black", "Russia"],
+            qty: 1
         }
     ],
     cart: [],
