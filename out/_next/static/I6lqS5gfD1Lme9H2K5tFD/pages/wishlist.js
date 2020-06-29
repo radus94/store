@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{"O+1H":function(n,w,i){(window.__NEXT_P=window.__NEXT_P||[]).push(["/wishlist",function(){return i("7d3W")}])}},[["O+1H",0,1,3,2,4]]]);

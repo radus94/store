@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{Kpik:function(n,w,o){(window.__NEXT_P=window.__NEXT_P||[]).push(["/products",function(){return o("q2dU")}])}},[["Kpik",0,1,3,2,4]]]);

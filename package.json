@@ -27,6 +27,7 @@
     "test-watch": "jest --watchAll",
     "start": "next",
     "build": "next build",
+    "export": "next export",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
